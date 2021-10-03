@@ -1,0 +1,1 @@
+They say, if you don't know, where to start and what to do, just start doing something.
