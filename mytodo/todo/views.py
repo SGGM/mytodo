@@ -1,5 +1,5 @@
 from django.http.response import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.list import ListView
 
 from .models import Todo
@@ -18,19 +18,19 @@ def todo_view(request):
     return render(request, 'todo_list.html', {'dataset': dataset})
 
 
-def todo_detail_view(request):
+def todo_detail_view(request, id):
     try:
         data = Todo.objects.get(id=id)
     except Todo.DoesNotExist:
         raise Http404("Page not found ;(")
 
-    return render(request, 'todo_list.html', {'data': data})
+    return render(request, 'todo_detail.html', {'data': data})
 
 
 def create_todo_view(request):
     
     if request.method == 'POST':
-        form = TodoForm
+        form = TodoForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -40,3 +40,34 @@ def create_todo_view(request):
             'form': form
         }
         return render(request, 'create_todo.html', context)
+
+
+def todo_update(request, id):
+    try:
+        old_data = get_object_or_404(Todo, id=id)
+    except Exception:
+        raise Http404('Todo doesn\'t exist')
+    if request.method =='POST':
+        form = TodoForm(request.POST, instance=old_data)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/{id}')
+    else:
+        form = TodoForm(instance = old_data)
+        context ={
+            'form':form
+        }
+        return render(request, 'update_todo.html', context)
+
+
+def todo_delete(request, id):
+    try:
+        data = get_object_or_404(Todo, id=id)
+    except Exception:
+        raise Http404('Todo doesn\'t exist')
+ 
+    if request.method == 'POST':
+        data.delete()
+        return redirect('/')
+    else:
+        return render(request, 'delete_todo.html')
