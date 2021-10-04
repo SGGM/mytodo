@@ -4,5 +4,9 @@
         <li>Title: {{ data.title }}</li>
         <li>Body: {{ data.body }}</li>
         <li>Created at: {{ data.created_at }}</li>
+        <a href="{% url 'delete_todo' id=data.id %}">Delete</a>
+        <a href="{% url 'update_todo' id=data.id %}">Update</a>
+        <a href="{% url 'detail_todo' id=data.id %}">Detail</a>
     </ul>
 {% endfor %}
+<a href="{% url 'create_todo' %}">Create</a>

@@ -51,7 +51,7 @@ def todo_update(request, id):
         form = TodoForm(request.POST, instance=old_data)
         if form.is_valid():
             form.save()
-            return redirect(f'/{id}')
+            return redirect('/')
     else:
         form = TodoForm(instance = old_data)
         context ={
