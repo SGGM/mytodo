@@ -1,0 +1,8 @@
+<h1>All Todos</h1>
+{% for data in dataset %}
+    <ul>
+        <li>Title: {{ data.title }}</li>
+        <li>Body: {{ data.body }}</li>
+        <li>Created at: {{ data.created_at }}</li>
+    </ul>
+{% endfor %}

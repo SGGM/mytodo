@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     # Local
 
-    'todo',
+    'todo.apps.TodoConfig',
 ]
 
 MIDDLEWARE = [
