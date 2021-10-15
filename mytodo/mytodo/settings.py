@@ -41,9 +41,11 @@ INSTALLED_APPS = [
 
     # Local
     'todo.apps.TodoConfig',
+    'api.apps.ApiConfig',
 
     # Third party
     "bootstrap5",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
