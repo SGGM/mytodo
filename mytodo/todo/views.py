@@ -15,7 +15,7 @@ from .forms import TodoForm
 
 def todo_view(request):
     dataset = Todo.objects.all()
-    return render(request, 'todo_list.html', {'dataset': dataset})
+    return render(request, 'todo/todo_list.html', {'dataset': dataset})
 
 
 def todo_detail_view(request, id):
