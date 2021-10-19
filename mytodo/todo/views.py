@@ -24,7 +24,7 @@ def todo_detail_view(request, id):
     except Todo.DoesNotExist:
         raise Http404("Page not found ;(")
 
-    return render(request, 'todo_detail.html', {'data': data})
+    return render(request, 'todo/todo_detail.html', {'data': data})
 
 
 def create_todo_view(request):
@@ -39,7 +39,7 @@ def create_todo_view(request):
         context = {
             'form': form
         }
-        return render(request, 'create_todo.html', context)
+        return render(request, 'todo/create_todo.html', context)
 
 
 def todo_update(request, id):
@@ -57,7 +57,7 @@ def todo_update(request, id):
         context ={
             'form':form
         }
-        return render(request, 'update_todo.html', context)
+        return render(request, 'todo/update_todo.html', context)
 
 
 def todo_delete(request, id):
@@ -70,4 +70,4 @@ def todo_delete(request, id):
         data.delete()
         return redirect('/')
     else:
-        return render(request, 'delete_todo.html')
+        return render(request, 'todo/delete_todo.html')
