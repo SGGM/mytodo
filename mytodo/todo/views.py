@@ -7,12 +7,6 @@ from .forms import TodoForm
 
 
 
-# class TodoList(ListView):
-#     """Main page with all todos"""
-#     model = Todo
-#     template_name = 'todo_list.html'
-
-
 def todo_view(request):
     dataset = Todo.objects.all()
     return render(request, 'todo/todo_list.html', {'dataset': dataset})
